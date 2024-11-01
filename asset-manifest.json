@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/play3-ts-test/static/css/main.b67a1cdf.css",
-    "main.js": "/play3-ts-test/static/js/main.1d2824ae.js",
+    "main.js": "/play3-ts-test/static/js/main.bb67823e.js",
     "static/js/453.3ebff905.chunk.js": "/play3-ts-test/static/js/453.3ebff905.chunk.js",
     "index.html": "/play3-ts-test/index.html",
     "main.b67a1cdf.css.map": "/play3-ts-test/static/css/main.b67a1cdf.css.map",
-    "main.1d2824ae.js.map": "/play3-ts-test/static/js/main.1d2824ae.js.map",
+    "main.bb67823e.js.map": "/play3-ts-test/static/js/main.bb67823e.js.map",
     "453.3ebff905.chunk.js.map": "/play3-ts-test/static/js/453.3ebff905.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.b67a1cdf.css",
-    "static/js/main.1d2824ae.js"
+    "static/js/main.bb67823e.js"
   ]
 }
