@@ -33,12 +33,15 @@ code {
   text-shadow: 3px 2px 0px black;
 }
 
+.popup-taptitle-shadow {
+  -webkit-text-stroke-width: 4px;
+  -webkit-text-stroke-color: black;
+  paint-order: stroke fill;
+  text-shadow: 3px 2px 0px black;
+}
+
 .close-icon-stroke {
   -webkit-text-stroke-width: 3px;
   -webkit-text-stroke-color: #A93C1D;
   paint-order: stroke fill;
-}
-
-.item-shadow { 
-  filter : drop-shadow(2px 2px #D8E1E9)
 }

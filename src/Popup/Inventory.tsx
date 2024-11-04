@@ -1,24 +1,18 @@
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { IconButton, styled } from '@mui/material';
 import PaperComponent from '../util/PaperComponent';
 import { ReactComponent as Close } from '../img/Close.svg';
 import Character from './Character';
 import Item from './Item';
+import { useState } from 'react';
+import clsx from 'clsx';
 
 const InventoryDialog = styled(Dialog)(({ theme }) => ({
-    '& .MuiDialogContent-root': {
-        border: '2.5px solid #1E273E',
-        margin : '0px 7px',
-        borderRadius : '15px',
-        backgroundColor: '#FFFEEF',
-        padding : '25px',
-    },
     '& .MuiDialog-paper': {
+        width: '100%',
         maxWidth: '529px',
         borderRadius: '20px',
         border: '3px solid #1E273E',
@@ -31,11 +25,16 @@ const InventoryDialog = styled(Dialog)(({ theme }) => ({
     }
 }));
 
+export type Tap = 'item' | 'itemnft' | 'othernft';
+
 export default function Inventory({ open, handleClose, handleItemPopupOpen }: {
     open: boolean;
     handleClose: () => void;
     handleItemPopupOpen: () => void;
 }) {
+
+    const [tap, setTap] = useState<Tap>('item');
+
     return <InventoryDialog
         PaperComponent={PaperComponent}
         onClose={handleClose}
@@ -56,9 +55,9 @@ export default function Inventory({ open, handleClose, handleItemPopupOpen }: {
                 position: 'absolute',
                 right: '25px',
                 top: '12px',
-                width : '35px',
-                height : '35px',
-                padding : '7px',
+                width: '35px',
+                height: '35px',
+                padding: '7px',
                 zIndex: 40,
                 backgroundColor: '#F87171',
                 border: '2px solid #4F172F',
@@ -67,58 +66,79 @@ export default function Inventory({ open, handleClose, handleItemPopupOpen }: {
                 color: theme.palette.grey[500],
                 "&:hover": {
                     backgroundColor: "#F87171 !important", // hover 시 배경색이 변하지 않게 설정
-                  },
+                },
             })}
         >
             <Close />
         </IconButton>
-        <DialogContent>
+        <div className="border-[#1E273E] border-[2.5px] mx-[7px] rounded-[15px] bg-[#FFFEEF] p-[25px]">
             <div className="grid grid-cols-5 grid-rows-4 gap-[10px]">
                 <Item position="Hat" />
                 <Character />
-                <Item position="Hair"/>
-                <Item position="Acc"/>
-                <Item position="Eye"/>
-                <Item position="Clothes"/>
-                <Item position="Mouth"/>
-                <Item position="Cape"/>
-                <Item position="Stuff"/>
-                <Item position="Skin"/>
-                <Item position="Stuff"/>
-                <Item position="Hair"/>
-
+                <Item position="Hair" />
+                <Item position="Acc" />
+                <Item position="Eye" />
+                <Item position="Clothes" />
+                <Item position="Mouth" />
+                <Item position="Cape" />
+                <Item position="Stuff" />
+                <Item position="Skin" />
+                <Item position="Stuff" />
+                <Item position="Hair" />
             </div>
-            {/* <div className="grid grid-cols-5 grid-rows-4 gap-2 p-4 aspect-square">
-        <div className="bg-gray-300 aspect-square col-span-3 row-span-3 flex justify-center items-center h-78">O</div>
-        <div className="bg-red-500 aspect-square flex justify-center items-center h-24">X</div>
-
-        <div className="bg-red-500 aspect-square flex justify-center items-center h-24">X</div>
-        <div className="bg-red-500 aspect-square flex justify-center items-center h-24">X</div>
-
-        <div className="bg-red-500 aspect-square flex justify-center items-center h-24">X</div>
-        <div className="bg-red-500 aspect-square flex justify-center items-center h-24">X</div>
-
-        <div className="bg-red-500 aspect-square  flex justify-center items-center h-24">X</div>
-        <div className="bg-red-500 aspect-square  flex justify-center items-center h-24">X</div>
-        <div className="bg-red-500 aspect-square  flex justify-center items-center h-24">X</div>
-        <div className="bg-red-500 aspect-square  flex justify-center items-center h-24">X</div>
-        <div className="bg-red-500 aspect-square  flex justify-center items-center h-24">X</div>
-    </div> */}
-        </DialogContent>
+        </div>
         <div className="mt-[12px]" />
-        <DialogContent >
-            <DialogContentText>
-                To subscribe to this website, please enter your email address here. We
-                will send updates occasionally.
-            </DialogContentText>
-        </DialogContent>
+        <div className="border-[#1E273E] border-[2.5px] mx-[7px] rounded-[15px] bg-[#FFFEEF] ">
+            <div className="flex bg-gradient-to-b from-[#415DA0] to-[#355091] rounded-t-[12px] ">
+                <div className={clsx("flex flex-1 justify-center items-center py-[10px] font-fredoka font-semibold text-[20px] text-white popup-taptitle-shadow hover:cursor-pointer", {
+                    'bg-[#FFFEEF] rounded-t-[12px] shadow-[2.5px_-1px_0px_#1E273E]': tap === 'item',
+                    'border-b-[2.5px] border-[#1E273E]': tap !== 'item',
+                })}
+                    onClick={() => setTap('item')}>
+                    Item
+                </div>
+                <div className={clsx("flex flex-1 justify-center items-center py-[10px] font-fredoka font-semibold text-[20px] text-white popup-taptitle-shadow hover:cursor-pointer", {
+                    'bg-[#FFFEEF] rounded-t-[12px] shadow-[2.5px_-1px_0px_#1E273E,-2.5px_-1px_0px_#1E273E]': tap === 'itemnft',
+                    'border-b-[2.5px] border-[#1E273E]': tap !== 'itemnft',
+                })}
+                    onClick={() => setTap('itemnft')}>
+                    Item NFT
+                </div>
+                <div className={clsx("flex flex-1 justify-center items-center py-[10px] font-fredoka font-semibold text-[20px] text-white popup-taptitle-shadow hover:cursor-pointer", {
+                    'bg-[#FFFEEF] rounded-t-[12px] shadow-[-2.5px_-1px_0px_#1E273E]': tap === 'othernft',
+                    'border-b-[2.5px] border-[#1E273E]': tap !== 'othernft',
+                })}
+                    onClick={() => setTap('othernft')}>
+
+                    Other NFT
+                </div>
+            </div>
+            <div className='p-[25px]'>
+                <div className="grid grid-cols-5 grid-rows-3 gap-[10px]">
+                    <Item tap={tap}/>
+                    <Item tap={tap}/>
+                    <Item tap={tap}/>
+                    <Item tap={tap}/>
+                    <Item tap={tap}/>
+                    <Item tap={tap}/>
+                    <Item tap={tap}/>
+                    <Item tap={tap}/>
+                    <Item tap={tap}/>
+                    <Item tap={tap}/>
+                    <Item tap={tap}/>
+                    <Item tap={tap}/>
+                    <Item tap={tap}/>
+                    <Item tap={tap}/>
+                    <Item tap={tap}/>
+                </div>
+            </div>
+        </div>
         <DialogActions>
             <Button autoFocus onClick={handleClose}>
                 Cancel
             </Button>
-            <Button onClick={handleClose}>Subscribe</Button>
+            <Button onClick={handleItemPopupOpen}>Open Child Modal</Button>
         </DialogActions>
-        <Button onClick={handleItemPopupOpen}>Open Child Modal</Button>
     </InventoryDialog>
 }
 
