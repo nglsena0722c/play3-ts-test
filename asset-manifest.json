@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/play3-ts-test/static/css/main.b540c12f.css",
-    "main.js": "/play3-ts-test/static/js/main.420c5de7.js",
+    "main.css": "/play3-ts-test/static/css/main.a453466c.css",
+    "main.js": "/play3-ts-test/static/js/main.7fd97280.js",
     "static/js/453.3ebff905.chunk.js": "/play3-ts-test/static/js/453.3ebff905.chunk.js",
     "static/media/Close.svg": "/play3-ts-test/static/media/Close.1b6824d1d8c9962d28d2270635320aab.svg",
     "index.html": "/play3-ts-test/index.html",
-    "main.b540c12f.css.map": "/play3-ts-test/static/css/main.b540c12f.css.map",
-    "main.420c5de7.js.map": "/play3-ts-test/static/js/main.420c5de7.js.map",
+    "main.a453466c.css.map": "/play3-ts-test/static/css/main.a453466c.css.map",
+    "main.7fd97280.js.map": "/play3-ts-test/static/js/main.7fd97280.js.map",
     "453.3ebff905.chunk.js.map": "/play3-ts-test/static/js/453.3ebff905.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b540c12f.css",
-    "static/js/main.420c5de7.js"
+    "static/css/main.a453466c.css",
+    "static/js/main.7fd97280.js"
   ]
 }
