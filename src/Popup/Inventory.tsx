@@ -7,13 +7,16 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { IconButton, styled } from '@mui/material';
 import PaperComponent from '../util/PaperComponent';
 import { ReactComponent as Close } from '../img/Close.svg';
+import Character from './Character';
+import Item from './Item';
 
 const InventoryDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
-        padding: theme.spacing(10),
-    },
-    '& .MuiDialogActions-root': {
-        padding: theme.spacing(1),
+        border: '2.5px solid #1E273E',
+        margin : '0px 7px',
+        borderRadius : '15px',
+        backgroundColor: '#FFFEEF',
+        padding : '25px',
     },
     '& .MuiDialog-paper': {
         maxWidth: '529px',
@@ -70,6 +73,40 @@ export default function Inventory({ open, handleClose, handleItemPopupOpen }: {
             <Close />
         </IconButton>
         <DialogContent>
+            <div className="grid grid-cols-5 grid-rows-4 gap-[10px]">
+                <Item position="Hat" />
+                <Character />
+                <Item position="Hair"/>
+                <Item position="Acc"/>
+                <Item position="Eye"/>
+                <Item position="Clothes"/>
+                <Item position="Mouth"/>
+                <Item position="Cape"/>
+                <Item position="Stuff"/>
+                <Item position="Skin"/>
+                <Item position="Stuff"/>
+                <Item position="Hair"/>
+
+            </div>
+            {/* <div className="grid grid-cols-5 grid-rows-4 gap-2 p-4 aspect-square">
+        <div className="bg-gray-300 aspect-square col-span-3 row-span-3 flex justify-center items-center h-78">O</div>
+        <div className="bg-red-500 aspect-square flex justify-center items-center h-24">X</div>
+
+        <div className="bg-red-500 aspect-square flex justify-center items-center h-24">X</div>
+        <div className="bg-red-500 aspect-square flex justify-center items-center h-24">X</div>
+
+        <div className="bg-red-500 aspect-square flex justify-center items-center h-24">X</div>
+        <div className="bg-red-500 aspect-square flex justify-center items-center h-24">X</div>
+
+        <div className="bg-red-500 aspect-square  flex justify-center items-center h-24">X</div>
+        <div className="bg-red-500 aspect-square  flex justify-center items-center h-24">X</div>
+        <div className="bg-red-500 aspect-square  flex justify-center items-center h-24">X</div>
+        <div className="bg-red-500 aspect-square  flex justify-center items-center h-24">X</div>
+        <div className="bg-red-500 aspect-square  flex justify-center items-center h-24">X</div>
+    </div> */}
+        </DialogContent>
+        <div className="mt-[12px]" />
+        <DialogContent >
             <DialogContentText>
                 To subscribe to this website, please enter your email address here. We
                 will send updates occasionally.

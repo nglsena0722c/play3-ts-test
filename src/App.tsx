@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
-import Inventory from './Inventory';
-import ItemPopup from './ItemPopup';
+import Inventory from './Popup/Inventory';
+import ItemPopup from './Popup/ItemPopup';
 
 export default function DraggableDialog() {
   const [inventoryOpen, setInventoryOpen] = React.useState(false);
