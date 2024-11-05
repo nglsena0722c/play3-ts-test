@@ -1,6 +1,4 @@
-import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
 import { IconButton, styled } from '@mui/material';
 import PaperComponent from '../util/PaperComponent';
@@ -9,6 +7,7 @@ import Character from './Character';
 import Item from './Item';
 import { useState } from 'react';
 import clsx from 'clsx';
+import CustomPagination from '../util/CustomPagination';
 
 const InventoryDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialog-paper': {
@@ -41,7 +40,10 @@ export default function Inventory({ open, handleClose, handleItemPopupOpen }: {
         aria-labelledby="customized-dialog-title"
         open={open}
     >
-        <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title" className='relative flex justify-center'>
+        <DialogTitle 
+        style={{ cursor: 'move' }} 
+        id="draggable-dialog-title" 
+        className='relative flex justify-center'>
             <span className="relative z-30 font-fredoka font-semibold text-[25px] leading-[30px] text-[#FFFFFF] popup-title-shadow " >
                 Inventory
             </span>
@@ -109,7 +111,6 @@ export default function Inventory({ open, handleClose, handleItemPopupOpen }: {
                     'border-b-[2.5px] border-[#1E273E]': tap !== 'othernft',
                 })}
                     onClick={() => setTap('othernft')}>
-
                     Other NFT
                 </div>
             </div>
@@ -133,12 +134,13 @@ export default function Inventory({ open, handleClose, handleItemPopupOpen }: {
                 </div>
             </div>
         </div>
-        <DialogActions>
+        <CustomPagination tap={tap} />
+        {/* <DialogActions>
             <Button autoFocus onClick={handleClose}>
                 Cancel
             </Button>
             <Button onClick={handleItemPopupOpen}>Open Child Modal</Button>
-        </DialogActions>
+        </DialogActions> */}
     </InventoryDialog>
 }
 
