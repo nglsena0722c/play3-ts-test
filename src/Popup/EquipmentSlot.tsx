@@ -11,11 +11,15 @@ const EquipmentSlot = ({ userItems }: { userItems: UserItem[] }) => {
         <Item position="Hat" />
         <Character />
         {
-            Array.from({ length: 10 }).map((_, i) => {
-                const userItem = userItems.filter((item) => {
-                    return item.position === equipmentList[i + 1]
-                })
-                return <Item key={`equip_${i}`} position={equipmentList[i + 1]} useritem={userItem ? userItem[0] : undefined} />
+            equipmentList.slice(1).map((position, i) => {
+                const userItem = userItems.find(item => item.position === position);
+                return (
+                    <Item
+                        key={`equip_${i}`}
+                        position={position}
+                        useritem={userItem}
+                    />
+                );
             })
         }
     </div>
