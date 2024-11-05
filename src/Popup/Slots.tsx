@@ -8,7 +8,7 @@ const Slots = ({ tap, userItems, page }: { tap: Tap, userItems : UserItem[], pag
                 const userItem = userItems.filter((item) => {
                     return item.slotRow !== undefined && item.slotCol !== undefined && ((item.slotRow * 5 + item.slotCol) === i)
                 }) 
-                return <Item tap={tap} useritem={userItem ? userItem[0] : undefined}/>
+                return <Item key={i} tap={tap} useritem={userItem ? userItem[0] : undefined}/>
             })
         }
     </div>

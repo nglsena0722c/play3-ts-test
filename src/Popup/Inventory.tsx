@@ -2,13 +2,12 @@ import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import { styled } from '@mui/material';
 import PaperComponent from '../util/PaperComponent';
-import Character from './Character';
-import Item from './Item';
 import { useState } from 'react';
 import clsx from 'clsx';
 import CustomPagination from '../util/CustomPagination';
 import CloseButton from '../util/CloseButton';
 import Slots from './Slots';
+import EquipmentSlot from './EquipmentSlot';
 
 const InventoryDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialog-paper': {
@@ -27,9 +26,10 @@ const InventoryDialog = styled(Dialog)(({ theme }) => ({
 }));
 
 export type Tap = 'Item' | 'Item NFT' | 'Other NFT';
+export type Equipment = 'Hat' | 'Hair' | 'Acc' | 'Eye' | 'Clothes' | 'Mouth' | 'Cape' | 'Stuffr' | 'Skin' | 'Stuffl'| 'Hair';
 
 export interface UserItem {
-    position: string;
+    position: Equipment;
     name: string;
     description: string;
     imagePath: string;
@@ -48,6 +48,14 @@ export default function Inventory({ open, handleClose, handleItemPopupOpen }: {
     const [tap, setTap] = useState<Tap>('Item');
     const [page, setPage] = useState(1);
 
+    const flexbag : UserItem = {
+        position: 'Stuffr',
+        name: 'Flex Bag',
+        description: 'Flex Bag with a stylish hand imprinted on it',
+        imagePath: '/play3-ts-test/img/FlexBag.svg',
+        tap: 'Item',
+        isEquipped: true,
+    }
     const hiphop: UserItem = {
         position: 'Hat',
         name: 'HipHop Cap',
@@ -70,7 +78,7 @@ export default function Inventory({ open, handleClose, handleItemPopupOpen }: {
         slotRow: 1,
         slotCol: 2,
     }
-    const [userItems, setUserItems] = useState<UserItem[]>([hiphop, sunglasses]);
+    const [userItems, setUserItems] = useState<UserItem[]>([flexbag, hiphop, sunglasses]);
 
     return <InventoryDialog
         PaperComponent={PaperComponent}
@@ -97,20 +105,7 @@ export default function Inventory({ open, handleClose, handleItemPopupOpen }: {
             zIndex: 40,
         }} />
         <div className="border-[#1E273E] border-[2.5px] mx-[7px] rounded-[15px] bg-[#FFFEEF] p-[25px]">
-            <div className="grid grid-cols-5 grid-rows-4 gap-[10px]">
-                <Item position="Hat" />
-                <Character />
-                <Item position="Hair" />
-                <Item position="Acc" />
-                <Item position="Eye" />
-                <Item position="Clothes" />
-                <Item position="Mouth" />
-                <Item position="Cape" />
-                <Item position="Stuff" />
-                <Item position="Skin" />
-                <Item position="Stuff" />
-                <Item position="Hair" />
-            </div>
+            <EquipmentSlot userItems={userItems.filter((item) =>  item.isEquipped)} />
         </div>
         <div className="mt-[12px]" />
         <div className="border-[#1E273E] border-[2.5px] mx-[7px] rounded-[15px] bg-[#FFFEEF] ">
