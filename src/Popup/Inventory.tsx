@@ -8,10 +8,12 @@ import { useState } from 'react';
 import clsx from 'clsx';
 import CustomPagination from '../util/CustomPagination';
 import CloseButton from '../util/CloseButton';
+import Slots from './Slots';
 
 const InventoryDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialog-paper': {
         width: '100%',
+        overflowX: 'hidden',
         maxWidth: '529px',
         borderRadius: '20px',
         border: '3px solid #1E273E',
@@ -26,12 +28,49 @@ const InventoryDialog = styled(Dialog)(({ theme }) => ({
 
 export type Tap = 'Item' | 'Item NFT' | 'Other NFT';
 
+export interface UserItem {
+    position: string;
+    name: string;
+    description: string;
+    imagePath: string;
+    tap: Tap;
+    isEquipped: boolean;
+    slotPage?: number;
+    slotRow?: number;
+    slotCol?: number;
+}
+
 export default function Inventory({ open, handleClose, handleItemPopupOpen }: {
     open: boolean;
     handleClose: () => void;
     handleItemPopupOpen: () => void;
 }) {
     const [tap, setTap] = useState<Tap>('Item');
+    const [page, setPage] = useState(1);
+
+    const hiphop: UserItem = {
+        position: 'Hat',
+        name: 'HipHop Cap',
+        description: 'Hip hop hat with a stylish hand imprinted on it',
+        imagePath: '/play3-ts-test/img/Hiphopcap.svg',
+        tap: 'Item',
+        isEquipped: false,
+        slotPage: 1,
+        slotRow: 0,
+        slotCol: 1,
+    }
+    const sunglasses: UserItem = {
+        position: 'Hat',
+        name: 'Sunglass',
+        description: 'Sunglass with a stylish hand imprinted on it',
+        imagePath: '/play3-ts-test/img/Sunglasses.svg',
+        tap: 'Item',
+        isEquipped: false,
+        slotPage: 1,
+        slotRow: 1,
+        slotCol: 2,
+    }
+    const [userItems, setUserItems] = useState<UserItem[]>([hiphop, sunglasses]);
 
     return <InventoryDialog
         PaperComponent={PaperComponent}
@@ -76,36 +115,40 @@ export default function Inventory({ open, handleClose, handleItemPopupOpen }: {
         <div className="mt-[12px]" />
         <div className="border-[#1E273E] border-[2.5px] mx-[7px] rounded-[15px] bg-[#FFFEEF] ">
             <div className="flex bg-gradient-to-b from-[#415DA0] to-[#355091] rounded-t-[12px] ">
-                <TapSelector name="Item" selectCondition={tap === 'Item'} onClick={() => setTap('Item')} />
-                <TapSelector name="Item NFT" selectCondition={tap === 'Item NFT'} onClick={() => setTap('Item NFT')} />
-                <TapSelector name="Other NFT" selectCondition={tap === 'Other NFT'} onClick={() => setTap('Other NFT')} />
+                <TapSelector
+                    name="Item"
+                    selectCondition={tap === 'Item'}
+                    onClick={() => setTap('Item')}
+                />
+                <TapSelector
+                    name="Item NFT"
+                    selectCondition={tap === 'Item NFT'}
+                    onClick={() => setTap('Item NFT')}
+                />
+                <TapSelector
+                    name="Other NFT"
+                    selectCondition={tap === 'Other NFT'}
+                    onClick={() => setTap('Other NFT')}
+                />
             </div>
             <div className='p-[25px]'>
-                <div className="grid grid-cols-5 grid-rows-3 gap-[10px]">
-                    <Item tap={tap} />
-                    <Item tap={tap} />
-                    <Item tap={tap} />
-                    <Item tap={tap} />
-                    <Item tap={tap} />
-                    <Item tap={tap} />
-                    <Item tap={tap} />
-                    <Item tap={tap} />
-                    <Item tap={tap} />
-                    <Item tap={tap} />
-                    <Item tap={tap} />
-                    <Item tap={tap} />
-                    <Item tap={tap} />
-                    <Item tap={tap} />
-                    <Item tap={tap} />
-                </div>
+                <Slots
+                    tap={tap}
+                    userItems={userItems.filter((item) => item.tap === tap && item.slotPage === page)}
+                    page={page}
+                />
             </div>
         </div>
-        <CustomPagination tap={tap} />
+        <CustomPagination
+            setPage={setPage}
+            page={page}
+            tap={tap}
+        />
         {/* <DialogActions>
             <Button autoFocus onClick={handleClose}>
                 Cancel
+                <Button onClick={handleItemPopupOpen}>Open Child Modal</Button>
             </Button>
-            <Button onClick={handleItemPopupOpen}>Open Child Modal</Button>
         </DialogActions> */}
     </InventoryDialog>
 }

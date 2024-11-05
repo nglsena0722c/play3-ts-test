@@ -12,11 +12,11 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/play3-ts-test">
       <Routes>
-        <Route path="/play3-ts-test" element={<App />} />
-        <Route path="/play3-ts-test/modal" element={<NestedModal />} />
-        <Route path="/play3-ts-test/dialog" element={<DraggableDialog />} />
+        <Route path="/" element={<App />} />
+        <Route path="/modal" element={<NestedModal />} />
+        <Route path="/dialog" element={<DraggableDialog />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
