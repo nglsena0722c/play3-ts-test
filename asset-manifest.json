@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/play3-ts-test/static/css/main.15fc444d.css",
-    "main.js": "/play3-ts-test/static/js/main.08925bda.js",
+    "main.js": "/play3-ts-test/static/js/main.c5393e93.js",
     "static/js/453.3ebff905.chunk.js": "/play3-ts-test/static/js/453.3ebff905.chunk.js",
     "static/media/Close.svg": "/play3-ts-test/static/media/Close.1b6824d1d8c9962d28d2270635320aab.svg",
     "static/media/PaginationArrow.svg": "/play3-ts-test/static/media/PaginationArrow.9be119837cddbda461847fc47cdbadd6.svg",
     "index.html": "/play3-ts-test/index.html",
     "main.15fc444d.css.map": "/play3-ts-test/static/css/main.15fc444d.css.map",
-    "main.08925bda.js.map": "/play3-ts-test/static/js/main.08925bda.js.map",
+    "main.c5393e93.js.map": "/play3-ts-test/static/js/main.c5393e93.js.map",
     "453.3ebff905.chunk.js.map": "/play3-ts-test/static/js/453.3ebff905.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.15fc444d.css",
-    "static/js/main.08925bda.js"
+    "static/js/main.c5393e93.js"
   ]
 }
