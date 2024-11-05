@@ -39,6 +39,7 @@ const CustomPagination = ({ tap }: { tap?: Tap }) => {
             backgroundColor : pagebg[tap || 'item'],
             filter : dropshadow[tap || 'item'],
             borderRadius: '8px',
+            margin : '0px 4px'
         },
         '& .Mui-selected': {
             color : 'white',

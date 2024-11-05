@@ -30,14 +30,14 @@ code {
   -webkit-text-stroke-width: 4px;
   -webkit-text-stroke-color: black;
   paint-order: stroke fill;
-  text-shadow: 3px 2px 0px black;
+  text-shadow: 3px 3px 0px black;
 }
 
 .popup-taptitle-shadow {
   -webkit-text-stroke-width: 4px;
   -webkit-text-stroke-color: black;
   paint-order: stroke fill;
-  text-shadow: 3px 2px 0px black;
+  text-shadow: 3px 3px 0px black;
 }
 
 .close-icon-stroke {
