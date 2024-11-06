@@ -26,7 +26,7 @@ const InventoryDialog = styled(Dialog)(({ theme }) => ({
 }));
 
 export type Tap = 'Item' | 'Item NFT' | 'Other NFT';
-export type Equipment = 'Hat' | 'Hair' | 'Acc' | 'Eye' | 'Clothes' | 'Mouth' | 'Cape' | 'Stuffr' | 'Skin' | 'Stuffl'| 'Hair';
+export type Equipment = 'Hat' | 'Hair' | 'Acc' | 'Eye' | 'Clothes' | 'Mouth' | 'Cape' | 'Stuffr' | 'Skin' | 'Stuffl' | 'Hair';
 
 export interface UserItem {
     position: Equipment;
@@ -48,7 +48,7 @@ export default function Inventory({ open, handleClose, handleItemPopupOpen }: {
     const [tap, setTap] = useState<Tap>('Item');
     const [page, setPage] = useState(1);
 
-    const flexbag : UserItem = {
+    const flexbag: UserItem = {
         position: 'Stuffr',
         name: 'Flex Bag',
         description: 'Flex Bag with a stylish hand imprinted on it',
@@ -105,7 +105,11 @@ export default function Inventory({ open, handleClose, handleItemPopupOpen }: {
             zIndex: 40,
         }} />
         <div className="border-[#1E273E] border-[2.5px] mx-[7px] rounded-[15px] bg-[#FFFEEF] p-[25px]">
-            <EquipmentSlot userItems={userItems.filter((item) =>  item.isEquipped)} />
+            <EquipmentSlot
+                page={page}
+                userItems={userItems}
+                setUserItems={setUserItems}
+            />
         </div>
         <div className="mt-[12px]" />
         <div className="border-[#1E273E] border-[2.5px] mx-[7px] rounded-[15px] bg-[#FFFEEF] ">
@@ -128,9 +132,10 @@ export default function Inventory({ open, handleClose, handleItemPopupOpen }: {
             </div>
             <div className='p-[25px]'>
                 <Slots
-                    tap={tap}
-                    userItems={userItems.filter((item) => item.tap === tap && item.slotPage === page)}
                     page={page}
+                    setUserItems={setUserItems}
+                    tap={tap}
+                    userItems={userItems}
                 />
             </div>
         </div>
