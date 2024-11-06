@@ -13,7 +13,7 @@ const Slots = ({
     setUserItems: React.Dispatch<React.SetStateAction<UserItem[]>>
 }) => {
     const userItemsinSlot = userItems.filter((item) => item.tap === tap && item.slotPage === page)
-    return <div className="grid grid-cols-5 grid-rows-3 gap-[10px]">
+    return <div className="grid grid-cols-5 grid-rows-3 gap-[8px] sm:gap-[10px]">
         {
             Array.from({ length: 15 }).map((_, i) => {
                 const userItem = userItemsinSlot.filter((item) => {

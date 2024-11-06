@@ -130,7 +130,7 @@ const Item = ({
             'bg-[#F9FFFE] border-[#C8E9E8] drop-shadow-[2px_2px_#C8E9E8]': tap === 'Item NFT',
             'bg-[#FFF9F9] border-[#FFDEDE] drop-shadow-[2px_2px_#FFDEDE]': tap === 'Other NFT',
         })}>
-            <div className="z-30 absolute leading-[19px] top-[4px] left-[8px] text-fredoka font-semibold text-[16px] text-[#D8E1E9]">
+            <div className="z-30 absolute leading-[15px] sm:leading-[19px] top-[4px] left-[4px] sm:left-[8px] text-fredoka font-semibold text-[12px] sm:text-[16px] text-[#D8E1E9]">
                 {typeof position !== "number" && position}
             </div>
             <div className="z-10 absolute top-0 left-0 border-white border-t-4 border-l-4 w-full h-full rounded-[13px]" />

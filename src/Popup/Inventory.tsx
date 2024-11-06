@@ -18,10 +18,14 @@ const InventoryDialog = styled(Dialog)(({ theme }) => ({
         border: '3px solid #1E273E',
         boxShadow: 'none',
         filter: 'drop-shadow(0px 2px 15px rgba(0, 0, 0, 0.7)) drop-shadow(3px 3px 0px #1E273E)',
-        backgroundColor: '#94B2FD'
+        backgroundColor: '#94B2FD',
+        margin : '20px',
     },
     '& .MuiDialogTitle-root': {
-        padding: '14px 15px'
+        padding: '10.5px 15px',
+        [theme.breakpoints.up("sm")]: {
+            padding: '14px 15px',
+        },
     }
 }));
 
@@ -90,28 +94,34 @@ export default function Inventory({ open, handleClose, handleItemPopupOpen }: {
             style={{ cursor: 'move' }}
             id="draggable-dialog-title"
             className='relative flex justify-center'>
-            <span className="relative z-30 font-fredoka font-semibold text-[25px] leading-[30px] text-[#FFFFFF] popup-title-shadow " >
+            <span className="relative z-30 font-fredoka font-semibold text-[20px] sm:text-[25px] leading-[24px] sm:leading-[30px] text-[#FFFFFF] popup-title-shadow " >
                 Inventory
             </span>
             <TopWhiteBorder />
             <TopWhiteShadow />
         </DialogTitle>
-        <CloseButton onClick={handleClose} property={{
+        <CloseButton onClick={handleClose} property={(theme) => ({
             position: 'absolute',
-            right: '25px',
-            top: '12px',
-            width: '35px',
-            height: '35px',
+            right: '15px',
+            top: '10px',
+            width: '25px',
+            height: '25px',
+            [theme.breakpoints.up("sm")]: {
+                right: '25px',
+                top: '12px',
+                width: '35px',
+                height: '35px',
+            },
             zIndex: 40,
-        }} />
-        <div className="border-[#1E273E] border-[2.5px] mx-[7px] rounded-[15px] bg-[#FFFEEF] p-[25px]">
+        })} />
+        <div className="border-[#1E273E] border-[2.5px] mx-[7px] rounded-[15px] bg-[#FFFEEF] px-[12px] py-[15px] sm:p-[25px]">
             <EquipmentSlot
                 page={page}
                 userItems={userItems}
                 setUserItems={setUserItems}
             />
         </div>
-        <div className="mt-[12px]" />
+        <div className="mt-[6px] sm:mt-[12px]" />
         <div className="border-[#1E273E] border-[2.5px] mx-[7px] rounded-[15px] bg-[#FFFEEF] ">
             <div className="flex bg-gradient-to-b from-[#415DA0] to-[#355091] rounded-t-[12px] ">
                 <TapSelector
@@ -130,7 +140,7 @@ export default function Inventory({ open, handleClose, handleItemPopupOpen }: {
                     onClick={() => setTap('Other NFT')}
                 />
             </div>
-            <div className='p-[25px]'>
+            <div className='px-[12px] py-[15px] sm:p-[25px]'>
                 <Slots
                     page={page}
                     setUserItems={setUserItems}
@@ -162,7 +172,7 @@ const TopWhiteBorder = () => {
 }
 
 const TopWhiteShadow = () => {
-    return <div className="absolute z-20 top-[8px] left-0 w-full h-[22px] flex justify-center items-center">
+    return <div className="absolute z-20 top-[7px] sm:top-[8px] left-0 w-full h-[13px] sm:h-[22px] flex justify-center items-center">
         <div className="bg-[#FFFFFF]/40 w-full mx-[8.5px] rounded-[25px] h-full" />
     </div>
 }
@@ -179,7 +189,7 @@ const TapSelector = ({ name, selectCondition, onClick }: { name: Tap, selectCond
         'Other NFT': 'border-b-[2.5px] border-[#1E273E]',
     }
 
-    return <div className={clsx("flex flex-1 justify-center items-center py-[10px] font-fredoka font-semibold text-[20px] text-white popup-taptitle-shadow hover:cursor-pointer", selectCondition ? selectedCss[name] : notSelectedCss[name])}
+    return <div className={clsx("flex flex-1 justify-center items-center py-[10px] font-fredoka font-semibold text-[14px] sm:text-[20px] text-white popup-taptitle-shadow hover:cursor-pointer", selectCondition ? selectedCss[name] : notSelectedCss[name])}
         onClick={onClick} >
         {name}
     </div >

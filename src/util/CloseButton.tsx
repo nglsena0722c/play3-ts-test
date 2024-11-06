@@ -1,12 +1,16 @@
-import { IconButton } from "@mui/material";
+import { IconButton, Theme } from "@mui/material";
 import { ReactComponent as Close } from '../img/Close.svg';
+import { CSSProperties } from "react";
 
-const CloseButton = ({ property, onClick }: { property: Record<string, string | number>, onClick: () => void }) => {
+const CloseButton = ({ property, onClick }: { property:(theme: Theme) => CSSProperties , onClick: () => void }) => {
     return <IconButton
         aria-label="close"
         onClick={onClick}
         sx={(theme) => ({
-            padding: '7px',
+            padding: '3px',
+            [theme.breakpoints.up("sm")]: {
+                padding: '7px',
+            },
             backgroundColor: '#F87171',
             border: '2px solid #4F172F',
             borderRadius: '10px',
@@ -15,7 +19,7 @@ const CloseButton = ({ property, onClick }: { property: Record<string, string | 
             "&:hover": {
                 backgroundColor: "#F87171 !important", // hover 시 배경색이 변하지 않게 설정
             },
-            ...property,
+            ...property(theme),
         })}
     >
         <Close />
