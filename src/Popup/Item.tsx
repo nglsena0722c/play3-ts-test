@@ -157,6 +157,7 @@ const Item = ({
 export default Item;
 
 const filterOutItem = (item: UserItem, target: UserItem) =>
+    item.tap !== target.tap ||
     item.position !== target.position ||
     item.isEquipped !== target.isEquipped ||
     item.slotPage !== target.slotPage ||
