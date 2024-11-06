@@ -53,11 +53,19 @@ export default function Inventory({ open, handleClose, handleItemPopupOpen }: {
     const [page, setPage] = useState(1);
 
     const flexbag: UserItem = {
-        position: 'Stuffr',
+        position: 'Stuffl',
         name: 'Flex Bag',
         description: 'Flex Bag with a stylish hand imprinted on it',
         imagePath: '/play3-ts-test/img/FlexBag.svg',
         tap: 'Item',
+        isEquipped: true,
+    }
+    const flexbag2: UserItem = {
+        position: 'Stuffr',
+        name: 'Flex Bag2',
+        description: 'Flex Bag2 with a stylish hand imprinted on it',
+        imagePath: '/play3-ts-test/img/FlexBag2.svg',
+        tap: 'Item NFT',
         isEquipped: true,
     }
     const hiphop: UserItem = {
@@ -82,7 +90,18 @@ export default function Inventory({ open, handleClose, handleItemPopupOpen }: {
         slotRow: 1,
         slotCol: 2,
     }
-    const [userItems, setUserItems] = useState<UserItem[]>([flexbag, hiphop, sunglasses]);
+    const skin: UserItem = {
+        position: 'Skin',
+        name: 'DefaultSkin',
+        description: 'This is skin',
+        imagePath: '/play3-ts-test/img/Skin.svg',
+        tap: 'Other NFT',
+        isEquipped: false,
+        slotPage: 1,
+        slotRow: 1,
+        slotCol: 2,
+    }
+    const [userItems, setUserItems] = useState<UserItem[]>([flexbag,flexbag2, hiphop, sunglasses, skin]);
 
     return <InventoryDialog
         PaperComponent={PaperComponent}

@@ -1,5 +1,6 @@
 import clsx from "clsx"
 import { Equipment, Tap, UserItem } from "./Inventory"
+import { useState } from "react";
 
 const Item = ({
     userItems,
@@ -16,6 +17,8 @@ const Item = ({
     tap?: Tap,
     showingItem?: UserItem,
 }) => {
+    const [clicked, setClicked] = useState<boolean>(false);
+
     const switchItems = (draggedItem: {
         position: string,
         item: UserItem
@@ -82,6 +85,7 @@ const Item = ({
         onDragOver={(e) => {
             e.preventDefault();
             const edgecase = [
+                typeof position === "number" && !e.dataTransfer.types.includes((tap || 'Item').toString().toLowerCase()), // 아이템 속성이랑 다른 곳에 장착시키려고 할 때
                 typeof position !== "number" && !e.dataTransfer.types.includes(position.toString().toLowerCase()), // 아이템 속성이랑 다른 곳에 장착시키려고 할 때
                 e.dataTransfer.types.includes('equipped') && showingItem && !e.dataTransfer.types.includes(showingItem.position.toLowerCase()) // 장착이 되어 있는 아이템을, 속성이랑 다른 곳에 옮기려고 할떄
             ]
@@ -116,28 +120,35 @@ const Item = ({
                     e.dataTransfer.setData("useritem", JSON.stringify(showingItem));
                     // onDragOver에서 dataTransfer 데이터를 getData로 확인할 수 없기 때문에, 꼼수로 types에 집어넣었음
                     e.dataTransfer.setData(showingItem.position.toLowerCase(), showingItem.position.toLowerCase());
+                    e.dataTransfer.setData(showingItem.tap.toLowerCase(), showingItem.tap.toLowerCase());
                     if (showingItem.isEquipped) {
                         e.dataTransfer.setData('equipped', 'equipped');
                     }
                 }}
-                onClick={() => console.log('onClick')} // 팝업 띄우기
+                onClick={() => {
+                    setClicked(true);
+                }} // 팝업 띄우기
                 className="z-40 absolute top-0 w-full h-full hover:cursor-grab "
             />
         }
 
         <div className={clsx("relative border-[3px] rounded-[16px] w-full h-full overflow-hidden", {
-            'bg-[#F6F9FF] border-[#D8E1E9] drop-shadow-[2px_2px_#D8E1E9]': (tap === 'Item') || (tap === undefined),
-            'bg-[#F9FFFE] border-[#C8E9E8] drop-shadow-[2px_2px_#C8E9E8]': tap === 'Item NFT',
-            'bg-[#FFF9F9] border-[#FFDEDE] drop-shadow-[2px_2px_#FFDEDE]': tap === 'Other NFT',
+            'bg-[#F6F9FF] border-[#D8E1E9] drop-shadow-[2px_2px_#D8E1E9]': showingItem ? (showingItem.tap === "Item") : ((tap === 'Item') || (tap === undefined)),
+            'bg-[#F9FFFE] border-[#C8E9E8] drop-shadow-[2px_2px_#C8E9E8]': showingItem ? showingItem?.tap === "Item NFT" : (tap === 'Item NFT'),
+            'bg-[#FFF9F9] border-[#FFDEDE] drop-shadow-[2px_2px_#FFDEDE]': showingItem ? showingItem?.tap === "Other NFT" : (tap === 'Other NFT') ,
         })}>
-            <div className="z-30 absolute leading-[15px] sm:leading-[19px] top-[4px] left-[4px] sm:left-[8px] text-fredoka font-semibold text-[12px] sm:text-[16px] text-[#D8E1E9]">
+            <div className={clsx("z-30 absolute leading-[15px] sm:leading-[19px] top-[4px] left-[4px] sm:left-[8px] text-fredoka font-semibold text-[12px] sm:text-[16px]", {
+                'text-[#D8E1E9]': (showingItem?.tap === "Item") || (showingItem === undefined),
+                'text-[#C8E9E8]': showingItem?.tap === "Item NFT",
+                'text-[#FFDEDE]': showingItem?.tap === "Other NFT",
+            })}>
                 {typeof position !== "number" && position}
             </div>
             <div className="z-10 absolute top-0 left-0 border-white border-t-4 border-l-4 w-full h-full rounded-[13px]" />
             <div className={clsx("z-20 absolute top-[4px] left-[4px] w-[calc(100%-4px)] h-[calc(100%-4px)]  rounded-tl-[13px] rounded-br-[13px]", {
-                'bg-[#F6F9FF]': tap === ('Item' || undefined),
-                'bg-[#F9FFFE]': tap === 'Item NFT',
-                'bg-[#FFF9F9]': tap === 'Other NFT',
+                'bg-[#F6F9FF]': showingItem ? (showingItem.tap === "Item") : ((tap === 'Item') || (tap === undefined)),
+                'bg-[#F9FFFE]': showingItem ? showingItem?.tap === "Item NFT" : (tap === 'Item NFT') ,
+                'bg-[#FFF9F9]': showingItem ? showingItem?.tap === "Other NFT" :  (tap === 'Other NFT') ,
             })} />
         </div>
     </div>
