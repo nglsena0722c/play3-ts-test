@@ -46,7 +46,7 @@ const redhiphop: UserItem = {
     position: 'Hat',
     name: 'Red HipHop Cap',
     description: 'Hip hop hat with a stylish hand imprinted on it',
-    imagePath: '/play3-ts-test/img/RedHiphopcap.svg',
+    imagePath: '/play3-ts-test/img/RedHipHopcap.svg',
     tap: 'Item',
     isEquipped: false,
     slotPage: 1,
