@@ -6,6 +6,8 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { IconButton, styled } from '@mui/material';
 import PaperComponent from '../util/PaperComponent';
+import useItemPopup from '../zustand/useItemPopup';
+import useUserItems from '../zustand/useUserItems';
 
 const ItemPopupDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -16,19 +18,26 @@ const ItemPopupDialog = styled(Dialog)(({ theme }) => ({
   },
 }));
 
-export default function ItemPopup({ open, handleClose }: {
-  open: boolean;
-  handleClose: () => void;
-}) {
+export default function ItemPopup() {
+  const { itemPopup, setItemPopup} = useItemPopup(); 
+  const { userItems, setUserItems } = useUserItems();
+
+  const handleClose = () => {
+    setItemPopup({
+      open : false
+    })
+  }
+
+  if (!itemPopup.item) return <></>
+
   return <ItemPopupDialog
     PaperComponent={PaperComponent}
     onClose={handleClose}
     aria-labelledby="customized-dialog-title"
-    open={open}
+    open={itemPopup.open}
   >
-
     <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
-      Subscribe
+      {itemPopup.item.name}
     </DialogTitle>
     <IconButton
       aria-label="close"

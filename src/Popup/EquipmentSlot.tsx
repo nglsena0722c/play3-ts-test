@@ -1,16 +1,14 @@
+import useUserItems, { Equipment } from "../zustand/useUserItems";
 import Character from "./Character"
-import { Equipment, UserItem } from "./Inventory"
 import Item from "./Item"
 
 const EquipmentSlot = ({
     page,
-    userItems,
-    setUserItems
 }: {
     page: number,
-    userItems: UserItem[],
-    setUserItems: React.Dispatch<React.SetStateAction<UserItem[]>>
 }) => {
+    const { userItems } = useUserItems();
+
     const equippedUserItem = userItems.filter((item) => item.isEquipped);
     const equipmentList: Equipment[] = [
         'Hat', 'Hair', 'Acc', 'Eye', 'Clothes', 'Mouth', 'Cape', 'Stuffr', 'Skin', 'Stuffl', 'Hair'
@@ -20,8 +18,6 @@ const EquipmentSlot = ({
         <div className="grid grid-cols-5 grid-rows-4 gap-[8px] sm:gap-[10px]">
             <Item
                 key={`Hat_0`}
-                userItems={userItems}
-                setUserItems={setUserItems}
                 page={page}
                 position="Hat"
                 showingItem={hatItem}
@@ -33,8 +29,6 @@ const EquipmentSlot = ({
                     return (
                         <Item
                             key={`${position}_${i+1}`}
-                            setUserItems={setUserItems}
-                            userItems={userItems}
                             page={page}
                             position={position}
                             showingItem={userItem}

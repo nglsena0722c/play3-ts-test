@@ -1,35 +1,22 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import Inventory from './Popup/Inventory';
+import useInventoryOpen from './zustand/useInventoryOpen';
 import ItemPopup from './Popup/ItemPopup';
 
-export default function DraggableDialog() {
-  const [inventoryOpen, setInventoryOpen] = React.useState(false);
-  const [itemPopupOpen, setItemPopupOpen] = React.useState(false);
+export default function App() {
+  const { setInventoryOpen } = useInventoryOpen();
 
-  const handleInventoryOpen = () => {
-    setInventoryOpen(true);
-  };
-
-  const handleInventoryClose = () => {
-    setInventoryOpen(false);
-  };
-  const handleItemPopupOpen = () => {
-    setItemPopupOpen(true);
-  };
-  const handleItemClose = () => {
-    setItemPopupOpen(false);
-  };
   return (
     <React.Fragment>
-      <Button variant="outlined" onClick={handleInventoryOpen}>
+      <Button variant="outlined" onClick={() => setInventoryOpen(true)}>
         Open Inventory
       </Button>
-      <Inventory open={inventoryOpen} handleClose={handleInventoryClose} handleItemPopupOpen={handleItemPopupOpen} />
-      <ItemPopup open={itemPopupOpen} handleClose={handleItemClose} />
+      <Inventory />
+      <ItemPopup  />
       <div className="font-fredoka font-normal">
         test
       </div>
     </React.Fragment>
-  );
+  )
 }
