@@ -15,7 +15,7 @@ const EquipmentSlot = ({
     ];
     const hatItem = equippedUserItem.find(item => item.position === 'Hat');
     return (
-        <div className="grid grid-cols-5 grid-rows-4 gap-[8px] sm:gap-[10px]">
+        <div className="grid grid-cols-5 grid-rows-4 gap-[8px] sm:gap-[9px]">
             <Item
                 key={`Hat_0`}
                 page={page}

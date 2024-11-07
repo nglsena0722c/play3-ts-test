@@ -15,7 +15,7 @@ const InventoryDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialog-paper': {
         width: '100%',
         overflowX: 'hidden',
-        maxWidth: '529px',
+        maxWidth: '420px',
         borderRadius: '20px',
         border: '3px solid #1E273E',
         boxShadow: 'none',
@@ -26,7 +26,7 @@ const InventoryDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogTitle-root': {
         padding: '10.5px 15px',
         [theme.breakpoints.up("sm")]: {
-            padding: '14px 15px',
+            padding: '12.5px 15px',
         },
     }
 }));
@@ -89,14 +89,12 @@ export default function Inventory() {
                 width: '25px',
                 height: '25px',
                 [theme.breakpoints.up("sm")]: {
-                    right: '25px',
-                    top: '12px',
                     width: '35px',
                     height: '35px',
                 },
                 zIndex: 40,
             })} />
-        <div className="border-[#1E273E] border-[2.5px] mx-[7px] rounded-[15px] bg-[#FFFEEF] px-[12px] py-[15px] sm:p-[25px]">
+        <div className="border-[#1E273E] border-[2.5px] mx-[7px] rounded-[15px] bg-[#FFFEEF] px-[12px] py-[15px] sm:p-[22px]">
             <EquipmentSlot page={page} />
         </div>
         <div className="mt-[6px] sm:mt-[12px]" />
@@ -118,7 +116,7 @@ export default function Inventory() {
                     onClick={() => setInventoryTap('Other NFT')}
                 />
             </div>
-            <div className='px-[12px] py-[15px] sm:p-[25px]'>
+            <div className='px-[12px] py-[15px] sm:p-[22px]'>
                 <Slots page={page} />
             </div>
         </div>
@@ -165,7 +163,7 @@ const TapSelector = ({ name, selectCondition, onClick }: { name: InventoryTap, s
         'Other NFT': 'border-b-[2.5px] border-[#1E273E]',
     }
 
-    return <div className={clsx("flex flex-1 justify-center items-center py-[10px] font-fredoka font-semibold text-[14px] sm:text-[20px] text-white popup-taptitle-shadow hover:cursor-pointer", selectCondition ? selectedCss[name] : notSelectedCss[name])}
+    return <div className={clsx("flex flex-1 justify-center items-center py-[7px] font-fredoka font-semibold text-[14px] sm:text-[18px] leading-[17px] sm:leading-[22px] text-white popup-taptitle-shadow hover:cursor-pointer", selectCondition ? selectedCss[name] : notSelectedCss[name])}
         onClick={onClick} >
         {name}
     </div >

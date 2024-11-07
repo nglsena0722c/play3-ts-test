@@ -144,7 +144,7 @@ const Item = ({
             'bg-[#F9FFFE] border-[#C8E9E8] drop-shadow-[2px_2px_#C8E9E8]': showingItem ? showingItem.tap === "Item NFT" : (typeof position === "number" && (inventoryTap === 'Item NFT')),
             'bg-[#FFF9F9] border-[#FFDEDE] drop-shadow-[2px_2px_#FFDEDE]': showingItem ? showingItem.tap === "Other NFT" : (typeof position === "number" && (inventoryTap === 'Other NFT')),
         })}>
-            <div className={clsx("z-30 absolute leading-[15px] sm:leading-[19px] top-[4px] left-[4px] sm:left-[8px] text-fredoka font-semibold text-[12px] sm:text-[16px]", {
+            <div className={clsx("z-30 absolute leading-[15px] sm:leading-[17px] top-[4px] left-[4px] sm:left-[8px] text-fredoka font-semibold text-[12px] sm:text-[14px]", {
                 'text-[#D8E1E9]': (showingItem?.tap === "Item") || (showingItem === undefined),
                 'text-[#C8E9E8]': showingItem?.tap === "Item NFT",
                 'text-[#FFDEDE]': showingItem?.tap === "Other NFT",

@@ -50,7 +50,7 @@ const CustomPagination = ({
 
     ));
 
-    return <div className="w-full flex justify-center items-center pt-[6px] sm:pt-[14.5px] pb-[10px] sm:pb-[12.5px]">
+    return <div className="w-full flex justify-center items-center pt-[6px] sm:pt-[12px] pb-[10px] sm:pb-[12.5px]">
         <StyledPagination
             page={page}
             onChange={(event, page) => {
