@@ -2,6 +2,7 @@ import clsx from "clsx"
 import useItemPopup from "../zustand/useItemPopup";
 import useInventoryTap from "../zustand/useInventoryTap";
 import useUserItems, { Equipment, UserItem } from "../zustand/useUserItems";
+import { useState } from "react";
 
 const SlotItem = ({
     position,
@@ -15,6 +16,7 @@ const SlotItem = ({
     const { setItemPopup } = useItemPopup();
     const { inventoryTap } = useInventoryTap();
     const { userItems, setUserItems } = useUserItems();
+    const [clicked, setClicked] = useState<Boolean>(false);
 
     const switchItems = (draggedItem: {
         position: string,
@@ -128,7 +130,7 @@ const SlotItem = ({
                         }
                     }}
                     onClick={() => {
-                        console.log(1);
+                        setClicked(true);
                         setItemPopup({
                             open: true,
                             item: showingItem
@@ -144,7 +146,7 @@ const SlotItem = ({
             'bg-[#F9FFFE] border-[#C8E9E8] drop-shadow-[2px_2px_#C8E9E8]': showingItem ? showingItem.tap === "Item NFT" : (typeof position === "number" && (inventoryTap === 'Item NFT')),
             'bg-[#FFF9F9] border-[#FFDEDE] drop-shadow-[2px_2px_#FFDEDE]': showingItem ? showingItem.tap === "Other NFT" : (typeof position === "number" && (inventoryTap === 'Other NFT')),
         })}>
-            <div className={clsx("z-30 absolute leading-[15px] sm:leading-[17px] top-[4px] left-[4px] sm:left-[8px] text-fredoka font-semibold text-[12px] sm:text-[14px]", {
+            <div className={clsx("z-30 absolute leading-[15px] top-[4px] left-[4px] sm:left-[8px] font-fredoka font-semibold text-[12px] ", {
                 'text-[#D8E1E9]': (showingItem?.tap === "Item") || (showingItem === undefined),
                 'text-[#C8E9E8]': showingItem?.tap === "Item NFT",
                 'text-[#FFDEDE]': showingItem?.tap === "Other NFT",
