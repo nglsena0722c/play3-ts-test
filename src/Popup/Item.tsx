@@ -139,7 +139,7 @@ const Item = ({
             </>
         }
 
-        <div className={clsx("relative border-[3px] rounded-[16px] w-full h-full overflow-hidden", {
+        <div className={clsx("relative border-[3px] rounded-[14px] w-full h-full overflow-hidden", {
             'bg-[#F6F9FF] border-[#D8E1E9] drop-shadow-[2px_2px_#D8E1E9]': showingItem ? (showingItem.tap === "Item") : (typeof position !== "number" || inventoryTap === "Item"),
             'bg-[#F9FFFE] border-[#C8E9E8] drop-shadow-[2px_2px_#C8E9E8]': showingItem ? showingItem.tap === "Item NFT" : (typeof position === "number" && (inventoryTap === 'Item NFT')),
             'bg-[#FFF9F9] border-[#FFDEDE] drop-shadow-[2px_2px_#FFDEDE]': showingItem ? showingItem.tap === "Other NFT" : (typeof position === "number" && (inventoryTap === 'Other NFT')),

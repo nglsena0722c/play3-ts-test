@@ -34,7 +34,7 @@ code {
 }
 
 .popup-taptitle-shadow {
-  -webkit-text-stroke-width: 4px;
+  -webkit-text-stroke-width: 3.5px;
   -webkit-text-stroke-color: black;
   paint-order: stroke fill;
   text-shadow: 3px 3px 0px black;
