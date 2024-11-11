@@ -1,6 +1,6 @@
 import useInventoryTap from "../zustand/useInventoryTap"
 import useUserItems from "../zustand/useUserItems"
-import Item from "./Item"
+import SlotItem from "./SlotItem"
 
 const Slots = ({
     page,
@@ -16,7 +16,7 @@ const Slots = ({
                 const userItem = userItemsinSlot.filter((item) => {
                     return item.slotRow !== undefined && item.slotCol !== undefined && ((item.slotRow * 5 + item.slotCol) === i)
                 })
-                return <Item
+                return <SlotItem
                     key={`slot_${i}`}
                     page={page}
                     position={i}

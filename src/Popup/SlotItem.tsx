@@ -3,7 +3,7 @@ import useItemPopup from "../zustand/useItemPopup";
 import useInventoryTap from "../zustand/useInventoryTap";
 import useUserItems, { Equipment, UserItem } from "../zustand/useUserItems";
 
-const Item = ({
+const SlotItem = ({
     position,
     page,
     showingItem,
@@ -162,7 +162,7 @@ const Item = ({
     </div>
 }
 
-export default Item;
+export default SlotItem;
 
 const filterOutItem = (item: UserItem, target: UserItem) =>
     item.tap !== target.tap ||
