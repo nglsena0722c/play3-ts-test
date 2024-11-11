@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { InventoryTap } from './useInventoryTap';
 
-export type Equipment = 'Hat' | 'Hair' | 'Acc' | 'Eye' | 'Clothes' | 'Mouth' | 'Cape' | 'Stuffr' | 'Skin' | 'Stuffl' | 'Hair';
+export type Equipment = 'Hat' | 'Hair' | 'Acc' | 'Eye' | 'Clothes' | 'Mouth' | 'Cape' | 'Stuffr' | 'Skin' | 'Stuffl' | 'Face\nDeco';
 
 export interface UserItem {
     position: Equipment;

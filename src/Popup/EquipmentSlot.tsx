@@ -11,7 +11,7 @@ const EquipmentSlot = ({
 
     const equippedUserItem = userItems.filter((item) => item.isEquipped);
     const equipmentList: Equipment[] = [
-        'Hat', 'Hair', 'Acc', 'Eye', 'Clothes', 'Mouth', 'Cape', 'Stuffr', 'Skin', 'Stuffl', 'Hair'
+        'Hat', 'Hair', 'Acc', 'Eye', 'Clothes', 'Mouth', 'Cape', 'Stuffr', 'Skin', 'Stuffl', 'Face\nDeco'
     ];
     const hatItem = equippedUserItem.find(item => item.position === 'Hat');
     return (
