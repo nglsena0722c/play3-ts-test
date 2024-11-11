@@ -45,3 +45,12 @@ code {
   -webkit-text-stroke-color: #A93C1D;
   paint-order: stroke fill;
 }
+
+.slotitem-onclicked-item {
+    border: 3px solid transparent;
+    background: 
+    linear-gradient(to right bottom, #6D8BBF, white), 
+    linear-gradient(to right bottom, #EEF5FD , #AEBAC5); 
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
+}

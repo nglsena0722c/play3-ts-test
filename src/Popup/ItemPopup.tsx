@@ -23,6 +23,7 @@ export default function ItemPopup() {
   const { userItems, setUserItems } = useUserItems();
 
   const handleClose = () => {
+    itemPopup.handleClose?.();
     setItemPopup({
       open : false
     })

@@ -133,7 +133,8 @@ const SlotItem = ({
                         setClicked(true);
                         setItemPopup({
                             open: true,
-                            item: showingItem
+                            item: showingItem,
+                            handleClose: () => { setClicked(false) }
                         })
                     }} // 팝업 띄우기
                     className="z-40 absolute top-0 w-full h-full hover:cursor-grab "
@@ -141,11 +142,19 @@ const SlotItem = ({
             </>
         }
 
-        <div className={clsx("relative border-[3px] rounded-[14px] w-full h-full overflow-hidden", {
+        <div className={clsx("relative rounded-[14px] w-full h-full overflow-hidden", 
+        !clicked && {
+            'border-[3px]' : true,
             'bg-[#F6F9FF] border-[#D8E1E9] drop-shadow-[2px_2px_#D8E1E9]': showingItem ? (showingItem.tap === "Item") : (typeof position !== "number" || inventoryTap === "Item"),
             'bg-[#F9FFFE] border-[#C8E9E8] drop-shadow-[2px_2px_#C8E9E8]': showingItem ? showingItem.tap === "Item NFT" : (typeof position === "number" && (inventoryTap === 'Item NFT')),
             'bg-[#FFF9F9] border-[#FFDEDE] drop-shadow-[2px_2px_#FFDEDE]': showingItem ? showingItem.tap === "Other NFT" : (typeof position === "number" && (inventoryTap === 'Other NFT')),
-        })}>
+        },
+        clicked && {
+            'drop-shadow-[3px_3px_#6D8BBF] slotitem-onclicked-item': showingItem ? (showingItem.tap === "Item") : (typeof position !== "number" || inventoryTap === "Item"),
+            'drop-shadow-[3px_3px_#179DA0] bg-gradient-to-br from-[#28B4B8] to-[#FFFFFF] border-[3px] border-[#B3E2E0]': showingItem ? showingItem.tap === "Item NFT" : (typeof position === "number" && (inventoryTap === 'Item NFT')),
+            'drop-shadow-[3px_3px_#F17C7C] bg-gradient-to-br from-[#FF6D6D] to-[#FFFFFF] border-[3px] border-[#FFDEDE]': showingItem ? showingItem.tap === "Other NFT" : (typeof position === "number" && (inventoryTap === 'Other NFT')),
+        },
+        )}>
             <div className={clsx("z-30 absolute leading-[15px] top-[4px] left-[4px] sm:left-[8px] font-fredoka font-semibold text-[12px] ", {
                 'text-[#D8E1E9]': (showingItem?.tap === "Item") || (showingItem === undefined),
                 'text-[#C8E9E8]': showingItem?.tap === "Item NFT",
@@ -153,12 +162,25 @@ const SlotItem = ({
             })}>
                 {typeof position !== "number" && position}
             </div>
-            <div className="z-10 absolute top-0 left-0 border-white border-t-4 border-l-4 w-full h-full rounded-[13px]" />
-            <div className={clsx("z-20 absolute top-[4px] left-[4px] w-[calc(100%-4px)] h-[calc(100%-4px)]  rounded-tl-[13px] rounded-br-[13px]", {
+            <div className={clsx("z-10 absolute top-0 left-0 w-full h-full rounded-[13px]",
+             !clicked && {
+                "border-white border-t-4 border-l-4" : true
+            },
+            clicked && {
+                "hidden" : true
+            })} />
+            <div className={clsx("z-20 absolute top-[4px] left-[4px] w-[calc(100%-4px)] h-[calc(100%-4px)]  rounded-tl-[8px] rounded-br-[13px]",
+            !clicked && {
                 'bg-[#F6F9FF]': showingItem ? (showingItem.tap === "Item") : (typeof position !== "number" || inventoryTap === "Item"),
                 'bg-[#F9FFFE]': showingItem ? showingItem.tap === "Item NFT" : (typeof position === "number" && (inventoryTap === 'Item NFT')),
                 'bg-[#FFF9F9]': showingItem ? showingItem.tap === "Other NFT" : (typeof position === "number" && (inventoryTap === 'Other NFT')),
-            })} />
+            },
+            clicked && {
+                'bg-[#EBF5FF]': showingItem ? (showingItem.tap === "Item") : (typeof position !== "number" || inventoryTap === "Item"),
+                'bg-[#F9FFFE]': showingItem ? showingItem.tap === "Item NFT" : (typeof position === "number" && (inventoryTap === 'Item NFT')),
+                'bg-[#FFF9F9]': showingItem ? showingItem.tap === "Other NFT" : (typeof position === "number" && (inventoryTap === 'Other NFT')),
+            },
+            )} />
 
         </div>
     </div>

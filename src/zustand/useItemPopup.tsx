@@ -4,6 +4,7 @@ import { UserItem } from './useUserItems';
 interface ItemPopup {
     open: boolean,
     item?: UserItem
+    handleClose? : () => void
 }
 
 interface UseItemPopup {
