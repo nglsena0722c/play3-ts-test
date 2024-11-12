@@ -1,16 +1,16 @@
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import { styled } from '@mui/material';
-import PaperComponent from '../util/PaperComponent';
+import PaperComponent from '../component/PaperComponent';
 import { useState } from 'react';
 import clsx from 'clsx';
-import CustomPagination from '../util/CustomPagination';
-import CloseButton from '../util/CloseButton';
+import CustomPagination from '../component/CustomPagination';
+import CloseButton from '../component/CloseButton';
 import Slots from './Slots';
 import EquipmentSlot from './EquipmentSlot';
 import useInventoryOpen from '../zustand/useInventoryOpen';
 import useInventoryTap, { InventoryTap } from '../zustand/useInventoryTap';
-import { TopWhiteBorder, TopWhiteShadow } from '../util/PopupTopComponent';
+import { TopWhiteBorder, TopWhiteShadow } from '../component/PopupTopComponent';
 
 const InventoryDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialog-paper': {

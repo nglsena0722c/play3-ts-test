@@ -1,11 +1,11 @@
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import { styled } from '@mui/material';
-import PaperComponent from '../util/PaperComponent';
+import PaperComponent from '../component/PaperComponent';
 import useItemPopup from '../zustand/useItemPopup';
 import useUserItems from '../zustand/useUserItems';
-import { TopWhiteBorder, TopWhiteShadow } from '../util/PopupTopComponent';
-import CloseButton from '../util/CloseButton';
+import { TopWhiteBorder, TopWhiteShadow } from '../component/PopupTopComponent';
+import CloseButton from '../component/CloseButton';
 import clsx from 'clsx';
 import { findEmptySlot, moveItems, switchItems } from '../util/updateUserItems';
 
