@@ -3,6 +3,7 @@ import useItemPopup from "../zustand/useItemPopup";
 import useInventoryTap from "../zustand/useInventoryTap";
 import useUserItems, { Equipment, UserItem } from "../zustand/useUserItems";
 import { useState } from "react";
+import { moveItems, switchItems } from "../util/updateUserItems";
 
 const SlotItem = ({
     position,
@@ -17,68 +18,6 @@ const SlotItem = ({
     const { inventoryTap } = useInventoryTap();
     const { userItems, setUserItems } = useUserItems();
     const [clicked, setClicked] = useState<Boolean>(false);
-
-    const switchItems = (draggedItem: {
-        position: string,
-        item: UserItem
-    }) => {
-        const newDraggedItem: UserItem = {
-            position: draggedItem.item.position,
-            name: draggedItem.item.name,
-            description: draggedItem.item.description,
-            imagePath: draggedItem.item.imagePath,
-            tap: draggedItem.item.tap,
-            isEquipped: showingItem!.isEquipped,
-            slotPage: showingItem!.slotPage,
-            slotRow: showingItem!.slotRow,
-            slotCol: showingItem!.slotCol,
-        }
-        const newExistingItem: UserItem = {
-            position: showingItem!.position,
-            name: showingItem!.name,
-            description: showingItem!.description,
-            imagePath: showingItem!.imagePath,
-            tap: showingItem!.tap,
-            isEquipped: draggedItem.item.isEquipped,
-            slotPage: draggedItem.item.slotPage,
-            slotRow: draggedItem.item.slotRow,
-            slotCol: draggedItem.item.slotCol,
-        }
-
-        const newItems = [...(userItems.filter((i) => (
-            filterOutItem(i, draggedItem.item) && filterOutItem(i, showingItem!)
-
-        ))), newDraggedItem, newExistingItem];
-        setUserItems(newItems);
-    }
-
-    const moveItems = (draggedItem: {
-        position: string,
-        item: UserItem
-    }) => {
-        const baseItem = {
-            position: draggedItem.item.position,
-            name: draggedItem.item.name,
-            description: draggedItem.item.description,
-            imagePath: draggedItem.item.imagePath,
-            tap: draggedItem.item.tap,
-        };
-        const newItem: UserItem = typeof position !== 'number' ? {
-            ...baseItem,
-            isEquipped: true,
-        } : {
-            ...baseItem,
-            isEquipped: false,
-            slotPage: page,
-            slotRow: Math.floor(position / 5),
-            slotCol: position % 5,
-        };
-
-        const newItems = [...(userItems.filter((i) => (
-            filterOutItem(i, draggedItem.item)
-        ))), newItem];
-        setUserItems(newItems);
-    }
 
     const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
         e.preventDefault();
@@ -101,9 +40,9 @@ const SlotItem = ({
                 item: JSON.parse(e.dataTransfer.getData("useritem")) as UserItem
             };
             if (showingItem) {
-                switchItems(draggedItem);
+                switchItems(draggedItem, showingItem, userItems, setUserItems);
             } else {
-                moveItems(draggedItem);
+                moveItems(draggedItem, position,  userItems, setUserItems, page);
             }
         }
     }
@@ -118,32 +57,30 @@ const SlotItem = ({
     >
         {
             showingItem &&
-            <>
-                <img
-                    alt="useritem"
-                    src={showingItem.imagePath}
-                    draggable
-                    onDragStart={(e) => {
-                        e.dataTransfer.setData("position", position.toString());
-                        e.dataTransfer.setData("useritem", JSON.stringify(showingItem));
-                        // onDragOver에서 dataTransfer 데이터를 getData로 확인할 수 없기 때문에, 꼼수로 types에 집어넣었음
-                        e.dataTransfer.setData(showingItem.position.toLowerCase(), showingItem.position.toLowerCase());
-                        e.dataTransfer.setData(showingItem.tap.toLowerCase(), showingItem.tap.toLowerCase());
-                        if (showingItem.isEquipped) {
-                            e.dataTransfer.setData('equipped', 'equipped');
-                        }
-                    }}
-                    onClick={() => {
-                        setClicked(true);
-                        setItemPopup({
-                            open: true,
-                            item: showingItem,
-                            handleClose: () => { setClicked(false) }
-                        })
-                    }} // 팝업 띄우기
-                    className="z-40 absolute top-0 w-full h-full hover:cursor-grab "
-                />
-            </>
+            <img
+                alt="useritem"
+                src={showingItem.imagePath}
+                draggable
+                onDragStart={(e) => {
+                    e.dataTransfer.setData("position", position.toString());
+                    e.dataTransfer.setData("useritem", JSON.stringify(showingItem));
+                    // onDragOver에서 dataTransfer 데이터를 getData로 확인할 수 없기 때문에, 꼼수로 types에 집어넣었음
+                    e.dataTransfer.setData(showingItem.position.toLowerCase(), showingItem.position.toLowerCase());
+                    e.dataTransfer.setData(showingItem.tap.toLowerCase(), showingItem.tap.toLowerCase());
+                    if (showingItem.isEquipped) {
+                        e.dataTransfer.setData('equipped', 'equipped');
+                    }
+                }}
+                onClick={() => {
+                    setClicked(true);
+                    setItemPopup({
+                        open: true,
+                        item: showingItem,
+                        handleClose: () => { setClicked(false) }
+                    })
+                }} // 팝업 띄우기
+                className="z-40 absolute top-0 w-full h-full hover:cursor-grab "
+            />
         }
 
         <div className={clsx("relative rounded-[14px] w-full h-full overflow-hidden",
@@ -182,10 +119,3 @@ const SlotItem = ({
 
 export default SlotItem;
 
-const filterOutItem = (item: UserItem, target: UserItem) =>
-    item.tap !== target.tap ||
-    item.position !== target.position ||
-    item.isEquipped !== target.isEquipped ||
-    item.slotPage !== target.slotPage ||
-    item.slotRow !== target.slotRow ||
-    item.slotCol !== target.slotCol;

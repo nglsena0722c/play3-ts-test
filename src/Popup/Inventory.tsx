@@ -10,6 +10,7 @@ import Slots from './Slots';
 import EquipmentSlot from './EquipmentSlot';
 import useInventoryOpen from '../zustand/useInventoryOpen';
 import useInventoryTap, { InventoryTap } from '../zustand/useInventoryTap';
+import { TopWhiteBorder, TopWhiteShadow } from '../util/PopupTopComponent';
 
 const InventoryDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialog-paper': {
@@ -19,8 +20,8 @@ const InventoryDialog = styled(Dialog)(({ theme }) => ({
         borderRadius: '20px',
         border: '3px solid #1E273E',
         boxShadow: 'none',
-        filter: 'drop-shadow(0px 2px 15px rgba(0, 0, 0, 0.35)) drop-shadow(3px 3px 0px #1E273E)',
-        backgroundColor: '#94B2FD',
+        filter: 'drop-shadow(0px 2px 15px rgba(0, 0, 0, 0.1)) drop-shadow(3px 3px 0px #1E273E)',
+        backgroundColor: 'rgba(148, 178, 253, 0.8)',
         margin: '20px',
     },
     '& .MuiDialogTitle-root': {
@@ -135,20 +136,6 @@ export default function Inventory() {
             }}
         />
     </InventoryDialog>
-}
-
-const TopWhiteBorder = () => {
-    return <div className="absolute z-10 top-0 w-full left-0 h-[25px] bg-gradient-to-b from-[#FFFFFF] to-[#FFFFFF]/0" >
-        <div className="relative w-full h-full">
-            <div className="absolute w-[calc(100%-6px)] h-[calc(100%-3px)] top-[3px] left-[3px] bg-[#94B2FD] rounded-t-[15px]" />
-        </div>
-    </div>
-}
-
-const TopWhiteShadow = () => {
-    return <div className="absolute z-20 top-[7px] sm:top-[8px] left-0 w-full h-[13px] sm:h-[22px] flex justify-center items-center">
-        <div className="bg-[#FFFFFF]/40 w-full mx-[8.5px] rounded-[25px] h-full" />
-    </div>
 }
 
 const TapSelector = ({ name, selectCondition, onClick }: { name: InventoryTap, selectCondition: boolean, onClick: () => void }) => {
