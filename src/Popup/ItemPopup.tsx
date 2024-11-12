@@ -1,6 +1,6 @@
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
-import { styled } from '@mui/material';
+import { styled, useMediaQuery } from '@mui/material';
 import PaperComponent from '../component/PaperComponent';
 import useItemPopup from '../zustand/useItemPopup';
 import useUserItems from '../zustand/useUserItems';
@@ -16,8 +16,8 @@ const ItemPopupDialog = styled(Dialog)(({ theme }) => ({
     maxWidth: '400px',
     borderRadius: '20px',
     border: '2px solid #1E273E',
-    boxShadow: 'none',
-    filter: 'drop-shadow(0px 2px 12px rgba(0, 0, 0, 0.6)) drop-shadow(2px 2px 0px #1E273E)',
+    boxShadow: '0px 2px 12px rgba(0, 0, 0, 0.6)',
+    // filter: 'drop-shadow(0px 2px 12px rgba(0, 0, 0, 0.6)) drop-shadow(2px 2px 0px #1E273E)',
     backgroundColor: 'rgba(148, 178, 253, 0.8)',
     margin: '20px',
   },
@@ -29,6 +29,7 @@ const ItemPopupDialog = styled(Dialog)(({ theme }) => ({
 export default function ItemPopup() {
   const { itemPopup, setItemPopup } = useItemPopup();
   const { userItems, setUserItems } = useUserItems();
+  const isDesktop = useMediaQuery('(min-width:640px)');
 
   if (!itemPopup.item) return <></>
 
@@ -85,6 +86,7 @@ export default function ItemPopup() {
     onClose={handleClose}
     aria-labelledby="customized-dialog-title"
     open={itemPopup.open}
+    hideBackdrop={isDesktop}
   >
     <DialogTitle
       style={{ cursor: 'move' }}
@@ -106,12 +108,12 @@ export default function ItemPopup() {
           [theme.breakpoints.up("sm")]: {
             padding: '4px',
           },
-          filter: 'drop-shadow(1px 1px 0px #3C120E)',
+          filter: 'drop-shadow(2px 2px 0px #3C120E)',
           border: '1.5px solid #3C120E',
           borderRadius: '5px',
         })} />
     </div>
-    <div className="drop-shadow-[1px_1px_#1E273E] mx-[5px] rounded-[15px] bg-[#3E558D] p-[10px] flex gap-[15px]">
+    <div className="border-[1.2px] border-[#1E273E] drop-shadow-[2px_2px_#1E273E] mx-[6px] rounded-[15px] bg-[#3E558D] p-[10px] flex gap-[15px]">
       <div className="w-full max-w-[100px] aspect-square drop-shadow-[1.5px_1.5px_#1E273E] border-[1.2px] border-[#1E273E] bg-[#F9FCFF] flex justify-center items-center rounded-[16px]">
         <img
           alt="useritem"
@@ -133,13 +135,13 @@ export default function ItemPopup() {
       </div>
     </div>
     <div className="my-[15px] mx-[5px] flex gap-[10px] font-fredoka leading-[19px] text-[16px] font-semibold text-white ">
-      <div className={clsx("popup-taptitle-shadow rounded-[10px] border-[1.5px] border-[#1E273E] drop-shadow-[1px_1px_#1E273E] flex flex-1 justify-center py-[9.5px] items-center hover:cursor-pointer", {
+      <div className={clsx("popup-taptitle-shadow rounded-[10px] border-[1.5px] border-[#1E273E] drop-shadow-[2px_2px_#1E273E] flex flex-1 justify-center py-[9.5px] items-center hover:cursor-pointer", {
         "bg-[#627FC7]": true
       })}>
         Discard
       </div>
       <div
-        onClick={handleEquipOrUnequip} className={clsx("popup-taptitle-shadow rounded-[10px] border-[1.5px] border-[#1E273E] drop-shadow-[1px_1px_#1E273E] flex flex-1 justify-center py-[9.5px] items-center hover:cursor-pointer", {
+        onClick={handleEquipOrUnequip} className={clsx("popup-taptitle-shadow rounded-[10px] border-[1.5px] border-[#1E273E] drop-shadow-[2px_2px_#1E273E] flex flex-1 justify-center py-[9.5px] items-center hover:cursor-pointer", {
           'bg-[#F87171]': itemPopup.item.isEquipped,
           'bg-[#B0FF81]': !itemPopup.item.isEquipped,
         })}

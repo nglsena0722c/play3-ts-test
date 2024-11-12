@@ -1,6 +1,6 @@
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
-import { styled } from '@mui/material';
+import { styled, useMediaQuery } from '@mui/material';
 import PaperComponent from '../component/PaperComponent';
 import { useState } from 'react';
 import clsx from 'clsx';
@@ -12,6 +12,7 @@ import useInventoryOpen from '../zustand/useInventoryOpen';
 import useInventoryTap, { InventoryTap } from '../zustand/useInventoryTap';
 import { TopWhiteBorder, TopWhiteShadow } from '../component/PopupTopComponent';
 
+
 const InventoryDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialog-paper': {
         width: '100%',
@@ -19,8 +20,8 @@ const InventoryDialog = styled(Dialog)(({ theme }) => ({
         maxWidth: '420px',
         borderRadius: '20px',
         border: '3px solid #1E273E',
-        boxShadow: 'none',
-        filter: 'drop-shadow(0px 2px 15px rgba(0, 0, 0, 0.1)) drop-shadow(3px 3px 0px #1E273E)',
+        boxShadow: '0px 2px 15px rgba(0, 0, 0, 0.1)',
+        // filter: 'drop-shadow(0px 2px 15px rgba(0, 0, 0, 0.1)) drop-shadow(3px 3px 0px #1E273E)',
         backgroundColor: 'rgba(148, 178, 253, 0.8)',
         margin: '20px',
     },
@@ -37,6 +38,8 @@ const InventoryDialog = styled(Dialog)(({ theme }) => ({
 export default function Inventory() {
     const { inventoryOpen, setInventoryOpen } = useInventoryOpen();
     const { inventoryTap, setInventoryTap } = useInventoryTap();
+    const isDesktop = useMediaQuery('(min-width:640px)');
+
 
     const handleClose = () => {
         setInventoryOpen(false);
@@ -70,6 +73,7 @@ export default function Inventory() {
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
         open={inventoryOpen}
+        hideBackdrop={isDesktop}
     >
         <DialogTitle
             style={{ cursor: 'move' }}

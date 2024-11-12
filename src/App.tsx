@@ -8,15 +8,16 @@ export default function App() {
   const { setInventoryOpen } = useInventoryOpen();
 
   return (
-    <React.Fragment>
-      <Button variant="outlined" onClick={() => setInventoryOpen(true)}>
+    <div className=" w-full h-[100vh] flex justify-center items-center"
+      style={{
+        backgroundImage: 'url("/play3-ts-test/img/bg.svg")'
+      }}
+    >
+      <Button color="error" variant="contained" onClick={() => setInventoryOpen(true)} className="bg-red-50">
         Open Inventory
       </Button>
       <Inventory />
-      <ItemPopup  />
-      <div className="font-fredoka font-normal">
-        test
-      </div>
-    </React.Fragment>
+      <ItemPopup />
+    </div >
   )
 }
