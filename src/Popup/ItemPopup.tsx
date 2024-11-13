@@ -134,7 +134,7 @@ export default function ItemPopup() {
         </span>
       </div>
     </div>
-    <div className="my-[15px] mx-[5px] flex gap-[10px] font-fredoka leading-[19px] text-[16px] font-semibold text-white ">
+    <div className="my-[15px] mx-[6px] flex gap-[10px] font-fredoka leading-[19px] text-[16px] font-semibold text-white ">
       <div className={clsx("popup-taptitle-shadow rounded-[10px] border-[1.5px] border-[#1E273E] drop-shadow-[2px_2px_#1E273E] flex flex-1 justify-center py-[9.5px] items-center hover:cursor-pointer", {
         "bg-[#627FC7]": true
       })}>
