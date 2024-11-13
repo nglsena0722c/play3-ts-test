@@ -20,7 +20,7 @@ const InventoryDialog = styled(Dialog)(({ theme }) => ({
         maxWidth: '420px',
         borderRadius: '20px',
         border: '3px solid #1E273E',
-        boxShadow: '0px 2px 15px rgba(0, 0, 0, 0.1)',
+        boxShadow: '0px 2px 15px rgba(0, 0, 0, 0.4)',
         // filter: 'drop-shadow(0px 2px 15px rgba(0, 0, 0, 0.1)) drop-shadow(3px 3px 0px #1E273E)',
         backgroundColor: 'rgba(148, 178, 253, 0.8)',
         margin: '20px',
